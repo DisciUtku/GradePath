@@ -6,14 +6,14 @@
     <meta name="theme-color" content="#0ea5e9" />
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="icon" href="./icons/icon-192.png" />
-    <title>Ağırlıklı Not Hesaplayıcı – PWA</title>
+    <title>GradePath</title>
     <link rel="stylesheet" href="./assets/styles.css" />
     <meta name="description" content="Ders bazında ağırlıklı not, gereken final, GANO/AKTS ve sınıf geçme analizi yapan PWA." />
   </head>
   <body>
     <div class="layout">
       <aside class="sidebar hidden">
-        <div class="brand">NotCalc</div>
+        <div class="brand">GradePath</div>
         <nav class="menu">
           <button class="menu-item" id="nav-add-course">Ders Ekle</button>
           <button class="menu-item" id="nav-advice">Ne Yapmalıyım?</button>
@@ -24,7 +24,7 @@
         <header class="app-header">
           <div style="display:flex; align-items:center; gap:8px">
             <button id="sidebar-toggle" class="btn" aria-label="Menüyü Aç/Kapat">☰</button>
-            <h1 id="app-title">Ağırlıklı Not Hesaplayıcı</h1>
+            <h1 id="app-title">GradePath</h1>
           </div>
           <div class="header-actions">
             <div id="gpa-badge" class="gpa-badge" aria-live="polite" title="Güncel GANO">GANO: 0.00</div>
@@ -93,6 +93,12 @@
 
     <!-- Floating Help Button -->
     <button id="help-btn" class="help-fab" aria-label="Yardım" title="Yardım">❓ Yardım</button>
+    <!-- Floating Language Button and Menu -->
+    <button id="lang-fab" class="lang-fab" aria-haspopup="true" aria-expanded="false" title="Dil">🌐 Dil</button>
+    <div id="lang-menu" class="lang-menu" hidden>
+      <button class="btn lang-opt" data-lang="tr">🇹🇷 Türkçe</button>
+      <button class="btn lang-opt" data-lang="en">🇬🇧 English</button>
+    </div>
 
     <script src="./assets/app.js" type="module"></script>
     <script>

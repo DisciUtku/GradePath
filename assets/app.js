@@ -230,6 +230,8 @@ const drawerScrim = document.getElementById('drawer-scrim');
 const langSelectEl = document.getElementById('lang-select');
 const gradeThresholdsBtn = document.getElementById('grade-thresholds-btn');
 const helpBtn = document.getElementById('help-btn');
+const langFab = document.getElementById('lang-fab');
+const langMenu = document.getElementById('lang-menu');
 
 function newCourse() {
   return {
@@ -1402,6 +1404,33 @@ if (langSelectEl) {
     applyTranslations();
     const st = getState();
     saveState(st);
+  });
+}
+
+// Floating language switcher
+if (langFab && langMenu) {
+  langFab.addEventListener('click', ()=>{
+    const expanded = langFab.getAttribute('aria-expanded') === 'true';
+    langFab.setAttribute('aria-expanded', String(!expanded));
+    langMenu.hidden = expanded;
+  });
+  langMenu.addEventListener('click', (e)=>{
+    const btn = e.target.closest('.lang-opt');
+    if (!btn) return;
+    const v = btn.dataset.lang === 'en' ? 'en' : 'tr';
+    currentLang = v;
+    if (langSelectEl) langSelectEl.value = v; // keep hidden select in sync if exists
+    applyTranslations();
+    const st = getState();
+    saveState(st);
+    langMenu.hidden = true;
+    langFab.setAttribute('aria-expanded', 'false');
+  });
+  document.addEventListener('click', (e)=>{
+    if (!langMenu.hidden && !e.target.closest('#lang-menu') && !e.target.closest('#lang-fab')) {
+      langMenu.hidden = true;
+      langFab.setAttribute('aria-expanded', 'false');
+    }
   });
 }
 
