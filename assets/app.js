@@ -648,6 +648,19 @@ sidebar.style.pointerEvents = 'auto';
 // Uygulama başlarken sidebar kapalı olsun
 sidebar.classList.add('hidden');
 
+// Mobilde menü öğesine tıklanınca menüyü otomatik kapat
+const sidebarMenu = document.querySelector('.sidebar .menu');
+if (sidebarMenu) {
+  sidebarMenu.addEventListener('click', (e)=>{
+    const item = e.target.closest('.menu-item');
+    if (!item) return;
+    if (window.matchMedia('(max-width: 900px)').matches) {
+      sidebar.classList.remove('open');
+      drawerScrim.hidden = true;
+    }
+  });
+}
+
 // Örnek doldur işlemi kaldırıldı
 
 // İlk yükleme
